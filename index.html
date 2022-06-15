@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마켓컬리 :: 내일의 장보기, 마켓컬리</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html {
+            color: #333;
+        }
+
+        ul,
+        li,
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        input,
+        select,
+        textarea,
+        button {
+            font-family: noto sans, malgun gothic, AppleGothic, dotum;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        /*header*/
+        header {
+            width: 1050px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /*header 상단*/
+        .user_menu {
+            width: 1050px;
+            height: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header_delivery img {
+            width: 121px;
+            height: 22px;
+            padding: 10px;
+        }
+
+        .login li {
+            float: left;
+            padding: 10px 8px;
+            color: #d8d8d8;
+        }
+
+        .login img {
+            padding: 0 5px;
+        }
+
+        .login span a {
+            color: #701A8D;
+        }
+
+        .customer_center {
+            display: none;
+        }
+
+        .dropdown_login {
+            position: relative;
+        }
+
+        .dropdown_login:hover .customer_center {
+            display: block;
+        }
+
+        .customer_center {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            border: 1px solid #d8d8d8;
+            background-color: #fff;
+        }
+
+        .customer_center li {
+            margin: 0;
+            padding: 0 0 5px 5px;
+            width: 100px;
+        }
+
+
+
+        /*header logo*/
+        .logo {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -20px;
+            width: 103px;
+            height: 79px;
+        }
+
+        /*nav*/
+        nav {
+            width: 100%;
+            margin: 0 auto;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        form {
+            position: relative;
+            height: 54px;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn_text {
+            border: #F7F7F7;
+            background-color: #F7F7F7;
+            width: 180px;
+            height: 36px;
+            padding: 0 60px 0 14px;
+            border-radius: 18px;
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 12px;
+            color: #666;
+            line-height: 16px;
+            outline: none;
+
+        }
+
+        .btn_search {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+            width: 30px;
+            height: 30px;
+        }
+
+        /*header nav li*/
+        .nav_product {
+            float: left;
+            height: 54px;
+            display: flex;
+        }
+
+        .nav_product li {
+            float: left;
+            padding: 16px 0 0;
+            text-align: center;
+
+        }
+
+        .nav_product li a {
+            font-weight: 700;
+            font-size: 16px;
+            font-family: 'Noto Sans';
+            letter-spacing: -0.3px;
+            color: #333;
+        }
+
+        .nav_menu {
+            width: 110px;
+        }
+
+        .nav_category {
+            width: 148px;
+        }
+
+        .nav_category img {
+            padding: 0 10px 0 0;
+        }
+
+        .new_menu {
+            width: 124px;
+        }
+        
+        .new_menu a:hover, .nav_menu a:hover {
+            text-decoration: underline #701A8D;
+            color: #701A8D;
+        }
+
+        /*nav icon*/
+        .nav_icon {
+            float: right;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            padding: 0 5px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .timer_product {
+            width: 100%;
+            height: 450px;
+            background-image: url("img_1/slash_pattern.png");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .timer_watch {
+            width: 250px;
+        }
+        
+        .timer_watch h4 {
+            padding-top: 110px;
+        }
+
+        .timer_watch h2 {
+            padding: 15px 0;
+            color: red;
+            font-weight: 900;
+        }
+
+        .timer_watch h2 span {
+            font-weight: 200;
+        }
+
+        .timer_box {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .timer_img {
+            width: 230px;
+            height: 230px;
+            border: 15px solid #fff;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+
+        /*slider width:100%*/
+        #slider {
+            width: 100%;
+        }
+
+        .slider_wrap {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+
+        .slider_wrap img {
+            width: 100%;
+            display: block;
+        }
+
+        .main1_slider {
+            width: 1200px;
+            margin: 0 auto;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .main1_slider img {
+            width: 100%;
+        }
+
+        /*footer*/
+        footer {
+            width: 100%;
+            border-top: 1px solid rgb(240, 240, 240);
+        }
+
+        .footer_first {
+            width: 1050px;
+            height: auto;
+            margin: 0 auto;
+            display: flex;
+            flex-flow: row wrap;
+            padding-top: 25px;
+        }
+
+        /*footer 고객센터 연결창*/
+        .footer_center {
+            width: 534px;
+            padding-bottom: 30px;
+            display: flex;
+            flex-flow: column wrap;
+        }
+
+        .footer_center h1 {
+            width: 150px;
+            font-size: 28px;
+        }
+
+        .footer_center button {
+            border: 1px solid rgb(219, 218, 218);
+            background-color: #fff;
+            width: 150px;
+            padding: 11px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .footer_center dt {
+            padding-left: 12px;
+            font-size: 13px;
+            color: #888;
+        }
+
+        .footer_center dt:first-child:not(:only-child) {
+            font-size: 14px;
+            font-weight: bold;
+            padding-bottom: 5px;
+            color: #333;
+        }
+
+        .center_number,
+        .kakao_inqury,
+        .direct_inqury,
+        .direct_bulkorder {
+            width: 90%;
+            display: flex;
+            align-items: center;
+            flex-flow: row wrap;
+            margin-top: 20px;
+        }
+
+        /*footer nav market-kurly-introduce*/
+        .footer_introduce {
+            width: 476px;
+        }
+
+        .footer_nav li {
+            float: left;
+            padding-right: 10px;
+            padding-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer_nav li a {
+            font-size: 13px;
+        }
+
+        /*사업자명*/
+        .corporation_introduce {
+            width: 100%;
+            color: #888;
+            line-height: 20px;
+            font-size: 12px;
+            letter-spacing: -0.5px;
+            padding-bottom: 10px;
+        }
+
+        .corporation_introduce span {
+            color: #701A8D;
+            letter-spacing: normal;
+            font-weight: 550;
+            font-size: 11px;
+        }
+
+        /*footer sns icon*/
+        .footer_icon {
+            float: left;
+            padding-top: 30px;
+        }
+
+        .footer_icon li {
+            float: left;
+            margin-right: 7px;
+        }
+
+        .footer_icon img {
+            width: 30px;
+        }
+
+        /*footer 인증란*/
+        .footer_certification {
+            width: 100%;
+            display: flex;
+            padding: 20px 10px;
+            justify-content: space-between;
+            border-top: 1px solid rgb(240, 240, 240);
+            ;
+        }
+
+        .footer_certification img {
+            width: 34px;
+        }
+
+        .payments img {
+            width: 102px;
+        }
+
+        .certification_box {
+            display: flex;
+            align-items: center;
+        }
+
+        .certification_box p {
+            display: flex;
+            flex-flow: column wrap;
+            padding-left: 20px;
+            width: 220px;
+        }
+
+        .certification_box a {
+            color: #999;
+            font-size: 9px;
+        }
+
+        /*footer_last 100% wrap*/
+        .footer_wrap {
+            width: 100%;
+            background-color: #f7f7f7;
+            ;
+        }
+
+        /*footer all rights reserved*/
+        .footer_last {
+            width: 1050px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 10px;
+            color: #999;
+            letter-spacing: -1px;
+            font-weight: 600;
+            line-height: 16px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        .footer_last span {
+            letter-spacing: normal;
+            line-height: 30px;
+            font-size: 10px;
+        }
+    </style>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        //timer zone
+        $(function () {
+            $.ajax({
+                url: "./json/timer.json",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length > 0) {
+                        for (var i in data) {
+                            $(".timer_img").eq(i).append("<a href='#'>" + "<img src='img_1/" + data[i].url + "'/>" + "</a>");
+                            //product introduct
+                            $(".timer_box").eq(i).append("<h4><a href='#'>" + data[i].explain + "</a></h4>");
+                            $(".timer_box").eq(i).append("<span><a href='#'>" + data[i].sale + "</a></span>");
+                            $(".timer_box").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
+                             //img
+                            $(".timer_img img").attr("width", "100%");
+                            $(".timer_img img").attr("height", "100%");
+                            $(".timer_img img").attr("alt", "timer img");
+                            //img css
+                            $(".timer_img img").css("object-fit","cover");
+                            //font css
+                            $(".timer_box h4").css({
+                                "width":"190px",
+                                "margin-top":"20px",
+                                "padding-bottom":"30px"
+                            });
+                            $(".timer_box h4 a").css({
+                                "font-size":"14px"
+                            });
+                            $(".timer_box span a").css({
+                                "position":"absolute",
+                                "bottom":"30px",
+                                "left":"90px",
+                                "font-size":"15px",
+                                "color":"red",
+                                "font-weight":"900"
+                            });
+                            $(".timer_box p a").css({
+                                "position":"absolute",
+                                "bottom":"30px",
+                                "right":"90px",
+                                "font-size":"15px",
+                                "color":"#000",
+                                "font-weight":"900"
+                            });
+                        }
+                    }
+                }
+            });
+        });
+        //first-product
+        $(function () {
+            $.ajax({
+                url: "./json/first_product.json",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length > 0) {
+                        for (var i in data) {
+                            $(".img_wrap_first").eq(i).append("<a href='#'>" + "<img src='img_1/" + data[i].url + "'/>" + "</a>");
+                            $(".img_wrap_first").eq(i).append("<span><a href='#'>" + "<img src='img_1/" + data[i].cart + "'/>" + "</a></span>");
+                            //product introduct
+                            $(".first_product").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
+                            $(".first_product").eq(i).append("<p>" + data[i].sale + "</p>");
+                            $(".first_product").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
+                            $(".first_product").eq(i).append("<span><del>" + data[i].xprice + "</del></span>"); 
+                             //img
+                            $(".img_wrap_first img").attr("width", "100%");
+                            $(".img_wrap_first img").attr("height", "100%");
+                            $(".img_wrap_first img").attr("alt", "product img");
+                            $(".img_wrap_first img").css({
+                                "transform": "scale(1)",
+                                "transition": "all 0.7s ease"
+                            });
+                            //img hover
+                            $(".first_product img").hover(function () {
+                                $(this).css("transform", "scale(1.03)",);
+                            }, function () {
+                                $(this).css("transform", "scale(1)");
+                            });
+                            //cart icon
+                            $(".img_wrap_first span img").attr("width", "50px");
+                            $(".img_wrap_first span img").attr("height", "50px");
+                            $(".img_wrap_first span img").css({
+                                "position": "absolute",
+                                "bottom": "15px",
+                                "right": "15px"
+                            });
+                            //font attr
+                            $(".first_product p").attr("width", "100%");
+                            //css
+                            $(".first_product h5 a").css({
+                                "font-size": "14px",
+                                "display": "block",
+                                "color": "#333333",
+                                "marginTop": "15px",
+                                "padding": "3px"
+                            });
+                            $(".first_product p").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "display": "inline",
+                                "color": "#FA622F",
+                                "line-height": "1.36",
+                                "padding": "3px"
+                            });
+                            $(".first_product p a").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "font-weight": "900",
+                                "color": "#333333",
+                                "line-height": "1.36"
+                            });
+                            $(".first_product span").css({
+                                "font-size": "12px",
+                                "display": "block",
+                                "font-weight": "400",
+                                "line-height": "1.45",
+                                "color": "#999999",
+                                "padding": "3px"
+                            });
+                        }
+                    }
+                }
+            });
+        });
+        //second products
+        $(function () {
+            $.ajax({
+                url: "./json/market.json",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length > 0) {
+                        for (var i in data) {
+                            //market products second
+                            //img
+                            $(".img_wrap").eq(i).append("<a href='#'>" + "<img src='img_1/" + data[i].url + "'/>" + "</a>");
+                            $(".img_wrap").eq(i).append("<span><a href='#'>" + "<img src='img_1/" + data[i].cart + "'/>" + "</a></span>")
+                            //상품설명
+                            $(".product").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
+                            $(".product").eq(i).append("<p>" + data[i].sale + "</p>");
+                            $(".product").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
+                            $(".product").eq(i).append("<span><del>" + data[i].xprice + "</del></span>");
+                            //img
+                            $(".img_wrap img").attr("width", "100%");
+                            $(".img_wrap img").attr("height", "100%");
+                            $(".img_wrap img").attr("alt", "product img");
+                            $(".img_wrap img").css({"transform": "scale(1)", "transition": "all 0.7s ease"});
+                            //img hover
+                            $(".product img").hover(function () {
+                                $(this).css("transform", "scale(1.03)",);
+                            }, function () {
+                                $(this).css("transform", "scale(1)");
+                            });
+                            //cart icon
+                            $(".img_wrap span img").attr("width", "50px");
+                            $(".img_wrap span img").attr("height", "50px");
+                            $(".img_wrap span img").css({
+                                "position": "absolute",
+                                "bottom": "15px",
+                                "right": "15px"
+                            });
+                            //font attr
+                            $(".product p").attr("width", "100%");
+                            //css
+                            $(".product h5 a").css({
+                                "font-size": "14px",
+                                "display": "block",
+                                "color": "#333333",
+                                "marginTop": "15px",
+                                "padding": "3px"
+                            });
+                            $(".product p").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "display": "inline",
+                                "color": "#FA622F",
+                                "line-height": "1.36",
+                                "padding": "3px"
+                            });
+                            $(".product p a").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "font-weight": "900",
+                                "color": "#333333",
+                                "line-height": "1.36"
+                            });
+                            $(".product span").css({
+                                "font-size": "12px",
+                                "display": "block",
+                                "font-weight": "400",
+                                "line-height": "1.45",
+                                "color": "#999999",
+                                "padding": "3px"
+                            });
+
+                        }
+                    }
+                }
+            });
+        });
+
+        $(function(){
+            $.ajax({
+                url : "./json/kurly_recipe.json",
+                dataType : "json",
+                success : function (data) {
+                    if(data.length > 0){
+                        for(var i in data){
+                            $(".recipe_img").eq(i).append("<a href='#'>" + "<img src='img_recipe/" + data[i].url + "'/>" + "</a>");
+                            //recipe introduce
+                            $(".recipe_box").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
+                            $(".recipe_box").eq(i).append("<p><a href='#'>" + data[i].subtitle + "</a></p>");
+                            //recipe img
+                            $(".recipe_img img").attr("width","100%");
+                            $(".recipe_img img").attr("height","100%");
+                            $(".recipe_img img").attr("alt","recipe_img");
+                            $(".recipe_img img").attr("background-color","#000")
+                            //recipe img hover
+                            $(".recipe_img img").hover(function(){
+                                $(this).css({"opacity":"0.6","transition":"all 0.3s ease"});
+                            },function(){
+                                $(this).css("opacity","1");
+                            });
+                            //recipe fontcss
+                            $(".recipe_box h5 a").css({
+                                "font-size":"15px",
+                                "line-height":"40px",
+                            });
+                            $(".recipe_box p a").css({
+                                "color":"#333"
+                            });
+                        }
+                    }
+                }
+            });
+        });
+   
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <div class="user_menu">
+            <a href="#" class="header_delivery"><img src="img_1/delivery_210801.webp" alt="header_delivery"></a>
+            <ul class="login">
+                <li><span><a href="#">회원가입</a></span></li>
+                <li>|</li>
+                <li><a href="#">로그인</a></li>
+                <li>|</li>
+                <li class="dropdown_login"><a href="#">고객센터<img src="img_1/ico_down_8x5.png" alt="down_button"></a>
+                    <ul class="customer_center">
+                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">자주하는 질문</a></li>
+                        <li><a href="#">1:1문의</a></li>
+                        <li><a href="#">대량주문 문의</a></li>
+                        <li><a href="#">상품 제안</a></li>
+                        <li><a href="#">에코포장 피드백</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <img src="img_1/ico_logo.png" alt="icon" class="logo">
+
+        <nav>
+            <ul class="nav_product">
+                <li class="nav_category"><a href="#"><img src="img_1/icon_hamburger.png" alt="hamburger">전체 카테고리</a>
+                </li>
+                <li class="new_menu"><a href="#">신상품</a></li>
+                <li class="nav_menu"><a href="#">베스트</a></li>
+                <li class="new_menu"><a href="#">알뜰쇼핑</a></li>
+                <li class="nav_menu"><a href="#">특가/혜택</a></li>
+            </ul>
+            <form>
+                <input type="text" placeholder="검색어를입력해주세요." class="btn_text">
+                <input type="image" src="img_1/icon_search.png" class="btn_search">
+            </form>
+            <div class="nav_icon">
+                <a href="#"><img src="img_1/icon_delivery_setting.svg" alt="delivery_icon"></a>
+            </div>
+            <div class="nav_icon">
+                <a href="#"><img src="img_1/btn-heart-off.svg" alt="heart_icon"></a>
+            </div>
+            <div class="nav_icon">
+                <a href="#"><img src="img_1/icon_cart.svg" alt="cart_icon"></a>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <div id="slider">
+        <div class="slider_wrap">
+            <img src="img_1/slider_1.webp" alt="slider" name="slider_img">
+        </div>
+    </div>
+
+    <main>
+        <section>
+            <div class="timer_product">
+                <div id="timer_wrap">
+                    <div class="timer_watch">
+                        <img src="img_1/tit_just_1day_v2.png" alt="timer alram">
+                        <h2>~70% <span>SALE</span></h2>
+                        <h4 id="timer"></h4>
+                    </div>
+                    <div class="timer_box">
+                        <div class="timer_img"></div>
+                        <div class="get_time"></div>
+                    </div>
+                    <div class="timer_box">
+                        <div class="timer_img"></div>
+                        <div class="get_time"></div>
+                    </div>
+                    <div class="timer_box">
+                        <div class="timer_img"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main1_slider">
+                <img src="img_1/main_slider1.webp" alt="main slider">
+            </div>
+
+            <article>
+                <h3 id="first_title"></h3>
+                <div class="first_product">
+                    <div class="img_wrap_first"></div>
+                </div>
+                <div class="first_product">
+                    <div class="img_wrap_first"></div>
+                </div>
+                <div class="first_product">
+                    <div class="img_wrap_first"></div>
+                </div>
+                <div class="first_product">
+                    <div class="img_wrap_first"></div>
+                </div>
+            </article>
+
+            <article class="product_two">
+                <h3 id="title"></h3>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+                <div class="product">
+                    <div class="img_wrap"></div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div class="main1_slider">
+        <a href="#"><img src=img_1/main_slider2.webp></a>
+    </div>
+
+    <article>
+        <h3 id="recipe_title"></h3>
+        <div class="recipe_box">
+            <div class="recipe_img"></div>
+        </div>
+        <div class="recipe_box">
+            <div class="recipe_img"></div>
+        </div>
+        <div class="recipe_box">
+            <div class="recipe_img"></div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="footer_first">
+            <div class="footer_center">
+                <h3>고객행복센터</h3>
+                <div class="center_number">
+                    <h1>1644-1107</h1>
+                    <dl>
+                        <dt>365고객센터</dt>
+                        <dt>오전7시 - 오후7시</dt>
+                    </dl>
+                </div>
+
+                <div class="kakao_inqury">
+                    <button>카카오톡 문의</button>
+                    <dl>
+                        <dt>365고객센터</dt>
+                        <dt>오전7시 - 오후7시</dt>
+                    </dl>
+                </div>
+                <div class="direct_inqury">
+                    <button>1:1 문의</button>
+                    <dl>
+                        <dt>24시간 접수 가능</dt>
+                        <dt>고객센터 운영시간에 순차적으로 답변해드리겠습니다.</dt>
+                    </dl>
+                </div>
+                <div class="direct_bulkorder">
+                    <button>대량주문 문의</button>
+                    <dl>
+                        <dt class="bulk_dt">비회원의 경우 메일로 문의 바랍니다.</dt>
+                    </dl>
+
+                </div>
+            </div>
+
+            <div class="footer_introduce">
+                <ul class="footer_nav">
+                    <li><a href="#">컬리소개</a></li>
+                    <li><a href="#">컬리소개영상</a></li>
+                    <li><a href="#">인재채용</a></li>
+                    <li><a href="#">이용약관</a></li>
+                    <li><a href="#">개인정보처리방침</a></li>
+                    <li><a href="#">이용안내</a></li>
+                </ul>
+
+                <div class="clear"></div>
+
+                <div class="corporation_introduce">
+                    <ul>
+                        <li>법인명 (상호) : 주식회사 컬리 | 사업자등록번호 : 261-81-23567 <span>사업자정보 확인</span></li>
+                        <li>통신판매업 : 제 2018-서울강남-01646호 | 개인정보보호책임자 : 이원준</li>
+                        <li>주소 : 서울특별시 강남구 테헤란로 133,18층(역삼동) | 대표이사 : 김슬아</li>
+                        <li>입점문의 : <span>입점문의하기</span> | 마케팅제휴 : <span>business@kurlycorp.com</span></li>
+                        <li>채용문의 : <span>recruit@kurlycorp.com</span></li>
+                        <li>팩스:070 - 7500 -6098 | 이메일 : <span>help@kurlycorp.com</span></li>
+                        <li>대량주문 문의 : <span>kurlygift@kurlycorp.com</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer_icon">
+                    <ul>
+                        <li><a href="#"><img src="img_1/ico_instagram.webp" alt="instagram"></a></li>
+                        <li><a href="#"><img src="img_1/ico_fb.webp" alt="facebook"></a></li>
+                        <li><a href="#"><img src="img_1/ico_blog.webp" alt="naver_blog"></a></li>
+                        <li><a href="#"><img src="img_1/ico_naverpost.webp" alt="naver_post"></a></li>
+                        <li><a href="#"><img src="img_1/ico_youtube.webp" alt="youtube"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer_certification">
+                <div class="certification_box">
+                    <a href="#"><img src="img_1/isms_220310.webp" alt="cer_img"></a>
+                    <p><a href="#">[인증범위]마켓컬리 쇼핑몰 서비스 개발.운영</a>
+                        <a href="#">(심사받지 않은 물리적 인프라 제외)</a>
+                        <a href="#">[유효기간]2022.01.19 ~ 2025.01.18</a>
+                    </p>
+                </div>
+                <div class="certification_box">
+                    <a href="#"><img src="img_1/logo_eprivacyplus.webp" alt="cer_img"></a>
+                    <p><a href="#">개인정보보호 우수 웹사이트</a>
+                        <a href="#">개인정보처리시스템 인증(ePRIVACY PLUSE)</a>
+                    </p>
+                </div>
+                <div class="certification_box">
+                    <a href="#" class="payments"><img src="img_1/logo_payments.webp" alt="cer_img"></a>
+                    <p><a href="#">고객님의 안전거래를 위해 현금 등으로 결제 시 저희 쇼핑몰에서 가입한
+                            토스 페이먼츠 구매안전(에스크로) 서비스를 이용하실 수 있습니다.</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer_wrap">
+            <div class="footer_last">
+                <p>마켓컬리에서 판매되는 상품 중에는 마켓컬리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓)상품이 포함되어있습니다.<br>
+                    마켓플레이(오픈마켓) 상품의 경우 컬리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 컬리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.<br>
+                    <span>@ KURLY.CORP.ALL.RIGHTS RESERVED</span>
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.body.style.backgroundColor = "#fff";
+        //main
+        //timer
+        let timerWrap = document.getElementById("timer_wrap");
+        timerWrap.style.width = "1200px";
+        timerWrap.style.height = "500px"
+        timerWrap.style.margin = "0 auto";
+        timerWrap.style.display = "flex";
+        timerWrap.style.flexFlow = "row wrap";
+        timerWrap.style.justifyContent = "space-between";
+        timerWrap.style.alignItems = "center";
+        
+        //title
+        let firstTitle = document.getElementById("first_title");
+        firstTitle.innerHTML = "이 상품 어때요?";
+        firstTitle.style.color = "#333333";
+        firstTitle.style.fontSize = "28px";
+        firstTitle.style.lineHeight = "1.15";
+        firstTitle.style.letterSpacing = "-0.5px"
+        firstTitle.style.fontWeight = "600";
+        firstTitle.style.textAlign = "center";
+        firstTitle.style.margin = "100px 0 30px 0";
+        firstTitle.style.width = "100%";
+        //product1 - article
+        let articleOne = document.getElementsByTagName("article")[0];
+        articleOne.style.width = "1200px";
+        articleOne.style.height = "auto";
+        articleOne.style.textAlign = "center";
+        articleOne.style.margin = "0 auto";
+        articleOne.style.display = "flex";
+        articleOne.style.flexFlow = "row wrap";
+        articleOne.style.justifyContent = "center";
+        //first product
+        let productsFirst = document.getElementsByClassName("first_product");
+
+        for (let i = 0; i < productsFirst.length; i++) {
+          productsFirst[i].style.boxSizing = "border-box";
+          productsFirst[i].style.width = "270px";
+          productsFirst[i].style.height = "460px";
+          productsFirst[i].style.boxSizing = "border-box";
+          productsFirst[i].style.margin = "15px 10px";
+          productsFirst[i].style.display = "inline-block";
+          productsFirst[i].style.textAlign = "left";
+          productsFirst[i].style.backgroundColor = "#fff";
+        }
+        //first product - img
+        let imgWrapFirst = document.getElementsByClassName("img_wrap_first");
+
+        for (let i = 0; i < productsFirst.length; i++) {
+          imgWrapFirst[i].style.width = "100%";
+          imgWrapFirst[i].style.height = "340px"
+          imgWrapFirst[i].style.overflow = "hidden";
+          imgWrapFirst[i].style.position = "relative";
+        }
+        
+        //product second - title
+        let title = document.getElementById("title");
+        title.innerHTML = "놓치면 후회할 가격 > ";
+        title.style.color = "#333333";
+        title.style.fontSize = "28px";
+        title.style.lineHeight = "1.15";
+        title.style.letterSpacing = "-0.5px"
+        title.style.fontWeight = "600";
+        title.style.textAlign = "center";
+        title.style.margin = "100px 0 30px 0";
+        title.style.width = "100%";
+        //product second - article
+        let articleTwo = document.getElementsByTagName("article")[1];
+        articleTwo.style.width = "1200px";
+        articleTwo.style.height = "auto";
+        articleTwo.style.textAlign = "center";
+        articleTwo.style.margin = "0 auto";
+        articleTwo.style.display = "flex";
+        articleTwo.style.flexFlow = "row wrap";
+        articleTwo.style.justifyContent = "center";
+        //second product
+        let products = document.getElementsByClassName("product");
+
+        for (let i = 0; i < products.length; i++) {
+          products[i].style.boxSizing = "border-box";
+          products[i].style.width = "270px";
+          products[i].style.height = "460px";
+          products[i].style.margin = "15px 10px";
+          products[i].style.display = "inline-block";
+          products[i].style.textAlign = "left";
+          products[i].style.backgroundColor = "#fff";
+        }
+        //second product - img
+        let imgWrap = document.getElementsByClassName("img_wrap");
+
+        for (let i = 0; i < products.length; i++) {
+          imgWrap[i].style.width = "100%";
+          imgWrap[i].style.height = "340px"
+          imgWrap[i].style.overflow = "hidden";
+          imgWrap[i].style.position = "relative";
+        }
+        
+        //recipe
+        let articleThree = document.getElementsByTagName("article")[2];
+        articleThree.style.width = "1200px";
+        articleThree.style.height = "auto";
+        articleThree.style.textAlign = "center";
+        articleThree.style.margin = "0 auto";
+        articleThree.style.display = "flex";
+        articleThree.style.flexFlow = "row wrap";
+        articleThree.style.justifyContent = "center";
+        articleThree.style.paddingBottom = "150px";
+
+        let recipeTitle = document.getElementById("recipe_title");
+        recipeTitle.innerHTML = "The Epiccure";
+        recipeTitle.style.color = "#000";
+        recipeTitle.style.fontSize = "28px";
+        recipeTitle.style.lineHeight = "1.15";
+        recipeTitle.style.letterSpacing = "-0.5px"
+        recipeTitle.style.fontWeight = "900";
+        recipeTitle.style.textAlign = "left";
+        recipeTitle.style.margin = "50px 0 20px 45px";
+        recipeTitle.style.width = "100%";
+
+        let recipeBox = document.getElementsByClassName("recipe_box");
+        
+          for(let i=0; i<recipeBox.length; i++){
+          recipeBox[i].style.boxSizing = "border-box";
+          recipeBox[i].style.width = "350px";
+          recipeBox[i].style.height = "370px";
+          recipeBox[i].style.display = "inline-block";
+          recipeBox[i].style.textAlign = "left";
+          recipeBox[i].style.margin = "0 15px";
+          }
+
+        let recipeImg = document.getElementsByClassName("recipe_img");
+        
+          for(let i=0; i<recipeBox.length; i++){
+            recipeImg[i].style.width = "100%";
+            recipeImg[i].style.height = "260px";
+            recipeImg[i].style.backgroundColor = "#000";
+          }
+
+      
+
+        //slider img
+        let slider_show = document.getElementsByName("slider_img");
+            let slider_array = ["img_1/slider_1.webp",
+                "img_1/slider_2.webp",
+                "img_1/slider_3.webp",
+                "img_1/slider_4.webp",
+                "img_1/slider_5.webp",
+                "img_1/slider_6.webp",
+                "img_1/slider_7.webp",
+                "img_1/slider_8.webp"
+            ];
+
+            let index = 0;
+
+            function slide() {
+                document["slider_img"].src = slider_array[index];
+                index++;
+                if (index >= slider_array.length) {
+                    index = 0;
+                }
+            }
+
+            setInterval("slide()", 4000); //slide함수가 4초마다 반복
+        
+            //timedeal timer
+            let countDownDate = new Date("Jan 1, 2025 20:19:18").getTime();
+
+            let x = setInterval(function(){
+                let now = new Date().getTime();
+
+                let distance = countDownDate - now;
+
+                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("timer").innerHTML = "남은시간 " + hours + " : " + minutes + " : " + seconds;
+
+                if(distance < 0){
+                    clearInterVal(x);
+                    document.getElementById("timer").innerHTML = "타임딜 종료";
+                }
+            },1000);
+
+
+
+    </script>
+</body>
+
+</html>
