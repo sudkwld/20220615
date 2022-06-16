@@ -186,6 +186,7 @@
 
         .nav_category {
             width: 148px;
+            position: relative;
         }
 
         .nav_category img {
@@ -195,11 +196,59 @@
         .new_menu {
             width: 124px;
         }
-        
-        .new_menu a:hover, .nav_menu a:hover {
+
+        .new_menu a:hover,
+        .nav_menu a:hover {
             text-decoration: underline #701A8D;
             color: #701A8D;
         }
+
+        /*header hamburger*/
+        .sub_category {
+            position: absolute;
+            top: 60px;
+            width: 180px;
+            display: none;
+            z-index: 3;
+        }
+
+
+        .sub_category>li {
+            background-color: rgb(255, 255, 255);
+            width: 200px;
+            height: 30px;
+            padding: 12px;
+            text-align: left;
+            position: relative;
+        }
+
+        .sub_category li a {
+            font-size: 13px;
+        }
+
+        .sub_category img {
+            width: 20px;
+        }
+
+        .sub_category li:hover {
+            background-color: #edebeb;
+        }
+
+        .sub_child {
+            position: absolute;
+            top: 0;
+            left: 224px;
+            z-index: 3;
+            display: none;
+        }
+
+        .sub_child li {
+            width: 200px;
+            padding: 12px;
+            background-color: #edebeb;
+        }
+
+
 
         /*nav icon*/
         .nav_icon {
@@ -223,7 +272,7 @@
         .timer_watch {
             width: 250px;
         }
-        
+
         .timer_watch h4 {
             padding-top: 110px;
         }
@@ -264,13 +313,54 @@
 
         .slider_wrap {
             width: 100%;
+            height: 545px;
+            overflow: hidden;
             max-width: 1920px;
             margin: 0 auto;
+            position: relative;
+            
         }
 
-        .slider_wrap img {
+        .auto_slide {
+            width: 8400px;
+        }
+
+        .auto_slide li {
             width: 100%;
-            display: block;
+            max-width: 1920px;
+            height: 545px;
+            float: left;
+        }
+
+        .auto_slide li img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prev {
+            position: absolute;
+            top: 250px;
+            left: 10%;
+        }
+
+        .next {
+            position: absolute;
+            top: 250px;
+            right: 10%;
+        }
+
+        .next img,
+        .prev img {
+            width: 80px;
+            height: 80px;
+            opacity: 0;
+            transition: opacity 0.5s linear;
+            cursor: pointer;
+        }
+
+        #slider:hover .next img, #slider:hover .prev img{
+            opacity: 1;
         }
 
         .main1_slider {
@@ -281,6 +371,17 @@
         }
 
         .main1_slider img {
+            width: 100%;
+        }
+
+        .main_slider {
+            width: 1200px;
+            margin: 0 auto;
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        .main_slider img {
             width: 100%;
         }
 
@@ -457,6 +558,23 @@
     </style>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
     <script>
+        //header 메뉴바 mouseenter mouseout
+        $(function () {
+            $(".nav_category").mouseenter(function () {
+                $(this).find(".sub_category").stop().fadeIn();
+            }).mouseleave(function () {
+                $(".sub_category").stop().hide();
+            });
+        });
+
+        $(function () {
+            $(".sub_category>li").mouseenter(function () {
+                $(this).find(".sub_child").stop().fadeIn();
+            }).mouseleave(function () {
+                $(".sub_child").stop().hide();
+            });
+        });
+        
         //timer zone
         $(function () {
             $.ajax({
@@ -470,36 +588,36 @@
                             $(".timer_box").eq(i).append("<h4><a href='#'>" + data[i].explain + "</a></h4>");
                             $(".timer_box").eq(i).append("<span><a href='#'>" + data[i].sale + "</a></span>");
                             $(".timer_box").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
-                             //img
+                            //img
                             $(".timer_img img").attr("width", "100%");
                             $(".timer_img img").attr("height", "100%");
                             $(".timer_img img").attr("alt", "timer img");
                             //img css
-                            $(".timer_img img").css("object-fit","cover");
+                            $(".timer_img img").css("object-fit", "cover");
                             //font css
                             $(".timer_box h4").css({
-                                "width":"190px",
-                                "margin-top":"20px",
-                                "padding-bottom":"30px"
+                                "width": "190px",
+                                "margin-top": "20px",
+                                "padding-bottom": "30px"
                             });
                             $(".timer_box h4 a").css({
-                                "font-size":"14px"
+                                "font-size": "14px"
                             });
                             $(".timer_box span a").css({
-                                "position":"absolute",
-                                "bottom":"30px",
-                                "left":"90px",
-                                "font-size":"15px",
-                                "color":"red",
-                                "font-weight":"900"
+                                "position": "absolute",
+                                "bottom": "30px",
+                                "left": "90px",
+                                "font-size": "15px",
+                                "color": "red",
+                                "font-weight": "900"
                             });
                             $(".timer_box p a").css({
-                                "position":"absolute",
-                                "bottom":"30px",
-                                "right":"90px",
-                                "font-size":"15px",
-                                "color":"#000",
-                                "font-weight":"900"
+                                "position": "absolute",
+                                "bottom": "30px",
+                                "right": "90px",
+                                "font-size": "15px",
+                                "color": "#000",
+                                "font-weight": "900"
                             });
                         }
                     }
@@ -520,8 +638,8 @@
                             $(".first_product").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
                             $(".first_product").eq(i).append("<p>" + data[i].sale + "</p>");
                             $(".first_product").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
-                            $(".first_product").eq(i).append("<span><del>" + data[i].xprice + "</del></span>"); 
-                             //img
+                            $(".first_product").eq(i).append("<span><del>" + data[i].xprice + "</del></span>");
+                            //img
                             $(".img_wrap_first img").attr("width", "100%");
                             $(".img_wrap_first img").attr("height", "100%");
                             $(".img_wrap_first img").attr("alt", "product img");
@@ -584,12 +702,77 @@
         //second products
         $(function () {
             $.ajax({
+                url: "./json/smarket.json",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length > 0) {
+                        for (var i in data) {
+                            $(".sproduct_img").eq(i).append("<a href='#'>" + "<img src='img_1/" + data[i].url + "'/>" + "</a>");
+                            $(".sproduct_img").eq(i).append("<span><a href='#'>" + "<img src='img_1/" + data[i].cart + "'/>" + "</a></span>");
+                            //product introduct
+                            $(".sproduct_box").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
+                            $(".sproduct_box").eq(i).append("<p><a href='#'>" + data[i].price + "</a></p>");
+                            //img
+                            $(".sproduct_img img").attr("width", "100%");
+                            $(".sproduct_img img").attr("height", "100%");
+                            $(".sproduct_img img").attr("alt", "product img");
+                            $(".sproduct_img img").css({
+                                "transform": "scale(1)",
+                                "transition": "all 0.7s ease"
+                            });
+                            //img hover
+                            $(".second_product img").hover(function () {
+                                $(this).css("transform", "scale(1.03)",);
+                            }, function () {
+                                $(this).css("transform", "scale(1)");
+                            });
+                            //cart icon
+                            $(".sproduct_img span img").attr("width", "50px");
+                            $(".sproduct_img span img").attr("height", "50px");
+                            $(".sproduct_img span img").css({
+                                "position": "absolute",
+                                "bottom": "15px",
+                                "right": "15px"
+                            });
+                            //font attr
+                            $(".sproduct_box p").attr("width", "100%");
+                            //css
+                            $(".sproduct_box h5 a").css({
+                                "font-size": "14px",
+                                "display": "block",
+                                "color": "#333333",
+                                "marginTop": "15px",
+                                "padding": "3px"
+                            });
+                            $(".sproduct_box p").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "display": "inline",
+                                "color": "#FA622F",
+                                "line-height": "1.36",
+                                "padding": "3px"
+                            });
+                            $(".sproduct_box p a").css({
+                                "font-weight": "bold",
+                                "font-size": "14px",
+                                "font-weight": "900",
+                                "color": "#333333",
+                                "line-height": "1.36"
+                            });
+                        }
+                    }
+                }
+            });
+        });
+        //third products
+        $(function () {
+            $.ajax({
                 url: "./json/market.json",
                 dataType: "json",
                 success: function (data) {
                     if (data.length > 0) {
                         for (var i in data) {
-                            //market products second
+                            //market products third
                             //img
                             $(".img_wrap").eq(i).append("<a href='#'>" + "<img src='img_1/" + data[i].url + "'/>" + "</a>");
                             $(".img_wrap").eq(i).append("<span><a href='#'>" + "<img src='img_1/" + data[i].cart + "'/>" + "</a></span>")
@@ -602,7 +785,7 @@
                             $(".img_wrap img").attr("width", "100%");
                             $(".img_wrap img").attr("height", "100%");
                             $(".img_wrap img").attr("alt", "product img");
-                            $(".img_wrap img").css({"transform": "scale(1)", "transition": "all 0.7s ease"});
+                            $(".img_wrap img").css({ "transform": "scale(1)", "transition": "all 0.7s ease" });
                             //img hover
                             $(".product img").hover(function () {
                                 $(this).css("transform", "scale(1.03)",);
@@ -657,42 +840,43 @@
             });
         });
 
-        $(function(){
+        $(function () {
             $.ajax({
-                url : "./json/kurly_recipe.json",
-                dataType : "json",
-                success : function (data) {
-                    if(data.length > 0){
-                        for(var i in data){
+                url: "./json/kurly_recipe.json",
+                dataType: "json",
+                success: function (data) {
+                    if (data.length > 0) {
+                        for (var i in data) {
                             $(".recipe_img").eq(i).append("<a href='#'>" + "<img src='img_recipe/" + data[i].url + "'/>" + "</a>");
                             //recipe introduce
                             $(".recipe_box").eq(i).append("<h5><a href='#'>" + data[i].title + "</a></h5>");
                             $(".recipe_box").eq(i).append("<p><a href='#'>" + data[i].subtitle + "</a></p>");
                             //recipe img
-                            $(".recipe_img img").attr("width","100%");
-                            $(".recipe_img img").attr("height","100%");
-                            $(".recipe_img img").attr("alt","recipe_img");
-                            $(".recipe_img img").attr("background-color","#000")
+                            $(".recipe_img img").attr("width", "100%");
+                            $(".recipe_img img").attr("height", "100%");
+                            $(".recipe_img img").attr("alt", "recipe_img");
+                            $(".recipe_img img").attr("background-color", "#000")
                             //recipe img hover
-                            $(".recipe_img img").hover(function(){
-                                $(this).css({"opacity":"0.6","transition":"all 0.3s ease"});
-                            },function(){
-                                $(this).css("opacity","1");
+                            $(".recipe_img img").hover(function () {
+                                $(this).css({ "opacity": "0.6", "transition": "all 0.3s ease" });
+                            }, function () {
+                                $(this).css("opacity", "1");
                             });
                             //recipe fontcss
                             $(".recipe_box h5 a").css({
-                                "font-size":"15px",
-                                "line-height":"40px",
+                                "font-size": "15px",
+                                "line-height": "40px",
                             });
                             $(".recipe_box p a").css({
-                                "color":"#333"
+                                "color": "#333"
                             });
                         }
                     }
                 }
             });
         });
-   
+
+
     </script>
 
 </head>
@@ -724,6 +908,220 @@
         <nav>
             <ul class="nav_product">
                 <li class="nav_category"><a href="#"><img src="img_1/icon_hamburger.png" alt="hamburger">전체 카테고리</a>
+                    <ul class="sub_category">
+                        <li><a href="#"><img src="img_2/header_sub1_o.webp" alt="header_imo">채소</a>
+                            <ul class="sub_child">
+                                <li><a href="#">친환경</a></li>
+                                <li><a href="#">고구마·감자·당근</a></li>
+                                <li><a href="#">시금치·쌈채소·나물</a></li>
+                                <li><a href="#">브로콜리·파프리카·양배추</a></li>
+                                <li><a href="#">양파·대파·마늘·배추</a></li>
+                                <li><a href="#">오이·호박·고추</a></li>
+                                <li><a href="#">냉동·이색·간편채소</a></li>
+                                <li><a href="#">콩나물·버섯</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub2_o.webp" alt="header_imo">과일·견과·씰</a>
+                            <ul class="sub_child">
+                                <li><a href="#">친환경</a></li>
+                                <li><a href="#">제철과일</a></li>
+                                <li><a href="#">국산과일</a></li>
+                                <li><a href="#">수입과일</a></li>
+                                <li><a href="#">간편과일</a></li>
+                                <li><a href="#">냉동·건과일</a></li>
+                                <li><a href="#">견과류</a></li>
+                                <li><a href="#">쌀·잡곡</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub3_o.webp" alt="header_imo">수산·해산·건어물</a>
+                            <ul class="sub_child">
+                                <li><a href="#">제철수산</a></li>
+                                <li><a href="#">생선류</a></li>
+                                <li><a href="#">굴비·반건류</a></li>
+                                <li><a href="#">오징어·낙지·문어</a></li>
+                                <li><a href="#">새우·게·랍스터</a></li>
+                                <li><a href="#">해산물·조개류</a></li>
+                                <li><a href="#">수산가공품</a></li>
+                                <li><a href="#">김·미역·해조류</a></li>
+                                <li><a href="#">건어물·다시팩</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub4_o.webp" alt="header_imo">정육·계란</a>
+                            <ul class="sub_child">
+                                <li><a href="#">국내산 소고기</a></li>
+                                <li><a href="#">수입산 소고기</a></li>
+                                <li><a href="#">돼지고기</a></li>
+                                <li><a href="#">계란류</a></li>
+                                <li><a href="#">닭·오리고기</a></li>
+                                <li><a href="#">양념육·돈까스</a></li>
+                                <li><a href="#">양고기</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub5_o.webp" alt="header_imo">국·반찬·메인요리</a>
+                            <ul class="sub_child">
+                                <li><a href="#">국·탕·찌개</a></li>
+                                <li><a href="#">밀키트·메인요리</a></li>
+                                <li><a href="#">밑반찬</a></li>
+                                <li><a href="#">김치·젓갈·장류</a></li>
+                                <li><a href="#">두부·어묵·부침개</a></li>
+                                <li><a href="#">베이컨·햄·통조림</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub6_o.webp" alt="header_imo">샐러드·간편식</a>
+                            <ul class="sub_child">
+                                <li><a href="#">샐러드·닭가슴살</a></li>
+                                <li><a href="#">도시락·밥류</a></li>
+                                <li><a href="#">파스타·면류</a></li>
+                                <li><a href="#">떡볶이·튀김·순대</a></li>
+                                <li><a href="#">피자·핫도그·만두</a></li>
+                                <li><a href="#">폭립·떡갈비·안주</a></li>
+                                <li><a href="#">죽·스프·카레</a></li>
+                                <li><a href="#">선식·시리얼</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub7_o.webp" alt="header_imo">면·양념·오일</a>
+                            <ul class="sub_child">
+                                <li><a href="#">파스타·면류</a></li>
+                                <li><a href="#">식초·소스·드레싱</a></li>
+                                <li><a href="#">양념·액젓·장류</a></li>
+                                <li><a href="#">식용유·참기름·오일</a></li>
+                                <li><a href="#">소금·설탕·향신료</a></li>
+                                <li><a href="#">밀가루·가루·믹스</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub8_o.webp" alt="header_imo">생수·음료·우유·커피</a>
+                            <ul class="sub_child">
+                                <li><a href="#">생수·탄산수</a></li>
+                                <li><a href="#">음료·주스</a></li>
+                                <li><a href="#">우유·두유·요거트</a></li>
+                                <li><a href="#">커피</a></li>
+                                <li><a href="#">차</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub9_o.webp" alt="header_imo">간식·과자·떡</a>
+                            <ul class="sub_child">
+                                <li><a href="#">과자·스낵·쿠키</a></li>
+                                <li><a href="#">초콜릿·젤리·캔디</a></li>
+                                <li><a href="#">떡·한과</a></li>
+                                <li><a href="#">아이스크림</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub10_o.webp" alt="header_imo">베이커리·치즈·델리</a>
+                            <ul class="sub_child">
+                                <li><a href="#">식빵·빵류</a></li>
+                                <li><a href="#">잼·버터·스프레드</a></li>
+                                <li><a href="#">케이크·파이·디저트</a></li>
+                                <li><a href="#">치즈</a></li>
+                                <li><a href="#">델리</a></li>
+                                <li><a href="#">올리브·피클</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub11_o.webp" alt="header_imo">건강식품</a>
+                            <ul class="sub_child">
+                                <li><a href="#">영양제</a></li>
+                                <li><a href="#">유산균</a></li>
+                                <li><a href="#">홍삼·인삼·꿀</a></li>
+                                <li><a href="#">건강즙·건강음료</a></li>
+                                <li><a href="#">건강분말·건강환</a></li>
+                                <li><a href="#">다이어트·이너뷰티</a></li>
+                                <li><a href="#">유아동</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub12_o.webp" alt="header_imo">와인</a>
+                            <ul class="sub_child">
+                                <li><a href="#">레드와인</a></li>
+                                <li><a href="#">화이트와인</a></li>
+                                <li><a href="#">샴페인·스파클링</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub13_o.webp" alt="header_imo">전통주</a>
+                            <ul class="sub_child">
+                                <li><a href="#">막걸리·약주</a></li>
+                                <li><a href="#">증류수·과실주</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub14_o.webp" alt="header_imo">생활용품·리빙·캠핑</a>
+                            <ul class="sub_child">
+                                <li><a href="#">휴지·티슈</a></li>
+                                <li><a href="#">여성·위생용품</a></li>
+                                <li><a href="#">세제·청소용품</a></li>
+                                <li><a href="#">화훼·인테어소품</a></li>
+                                <li><a href="#">의약외품·마스크</a></li>
+                                <li><a href="#">생활잡화·문구</a></li>
+                                <li><a href="#">캠핑용품</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub15_o.webp" alt="header_imo">스킨케어·메이크업</a>
+                            <ul class="sub_child">
+                                <li><a href="#">스킨·미스트·패드</a></li>
+                                <li><a href="#">에센스·앰플·로션</a></li>
+                                <li><a href="#">크림·오일</a></li>
+                                <li><a href="#">클렌징</a></li>
+                                <li><a href="#">마스크팩</a></li>
+                                <li><a href="#">선케어</a></li>
+                                <li><a href="#">메이크업</a></li>
+                                <li><a href="#">맨즈케어</a></li>
+                                <li><a href="#">뷰티용품·기기</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub16_o.webp" alt="header_imo">헤어·바디·구강</a>
+                            <ul class="sub_child">
+                                <li><a href="#">구강·면도</a></li>
+                                <li><a href="#">샴푸·컨디셔너</a></li>
+                                <li><a href="#">트리트먼트·팩</a></li>
+                                <li><a href="#">헤어에센스·염모</a></li>
+                                <li><a href="#">바디워시·스크럽</a></li>
+                                <li><a href="#">바디로션·크림</a></li>
+                                <li><a href="#">핸드·립·데오</a></li>
+                                <li><a href="#">향수·디퓨저</a></li>
+                                <li><a href="#">헤어·바디소품</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub17_o.webp" alt="header_imo">주방용품</a>
+                            <ul class="sub_child">
+                                <li><a href="#">주방소모품·잡화</a></li>
+                                <li><a href="#">주방·조리도구</a></li>
+                                <li><a href="#">냄비·팬·솥</a></li>
+                                <li><a href="#">보관용기·텀블러</a></li>
+                                <li><a href="#">식기·테이블웨어</a></li>
+                                <li><a href="#">컵·잔·커피도구</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub18_o.webp" alt="header_imo">가전제품</a>
+                            <ul class="sub_child">
+                                <li><a href="#">주방가전</a></li>
+                                <li><a href="#">생활가전</a></li>
+                                <li><a href="#">계절가전</a></li>
+                                <li><a href="#">디지털·PC</a></li>
+                                <li><a href="#">대형·설치가전</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub19_o.webp" alt="header_imo">반려동물</a>
+                            <ul class="sub_child">
+                                <li><a href="#">강아지 간식</a></li>
+                                <li><a href="#">강아지 주식</a></li>
+                                <li><a href="#">고양이 간식</a></li>
+                                <li><a href="#">고양이 주식</a></li>
+                                <li><a href="#">건강관리</a></li>
+                                <li><a href="#">배변·위생</a></li>
+                                <li><a href="#">장난감</a></li>
+                                <li><a href="#">미용·외출·하우스 등</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><img src="img_2/header_sub20_o.webp" alt="header_imo">베이비·키즈·완구</a>
+                            <ul class="sub_child">
+                                <li><a href="#">분유·간편 이유식</a></li>
+                                <li><a href="#">이유식 재료</a></li>
+                                <li><a href="#">간식·음식·음료</a></li>
+                                <li><a href="#">건강식품</a></li>
+                                <li><a href="#">이유·수유용품</a></li>
+                                <li><a href="#">기저귀·물티슈</a></li>
+                                <li><a href="#">세제·위생용품</a></li>
+                                <li><a href="#">스킨·구강케어</a></li>
+                                <li><a href="#">완구·잡화류</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
                 <li class="new_menu"><a href="#">신상품</a></li>
                 <li class="nav_menu"><a href="#">베스트</a></li>
@@ -750,7 +1148,18 @@
 
     <div id="slider">
         <div class="slider_wrap">
-            <img src="img_1/slider_1.webp" alt="slider" name="slider_img">
+            <ul class="auto_slide">
+                <li><img src="img_1/slider_1.webp" alt="slider"></li>
+                <li><img src="img_1/slider_2.webp" alt="slider"></li>
+                <li><img src="img_1/slider_3.webp" alt="slider"></li>
+                <li><img src="img_1/slider_4.webp" alt="slider"></li>
+                <li><img src="img_1/slider_5.webp" alt="slider"></li>
+                <li><img src="img_1/slider_6.webp" alt="slider"></li>
+                <li><img src="img_1/slider_7.webp" alt="slider"></li>
+                <li><img src="img_1/slider_8.webp" alt="slider"></li>
+            </ul>
+            <span class="prev"><img src="img_1/arrow_banner_left_52_52.svg" alt="prev button"></span>
+            <span class="next"><img src="img_1/arrow_banner_right_52_52.svg" alt="next button"></span>
         </div>
     </div>
 
@@ -777,7 +1186,7 @@
                 </div>
             </div>
 
-            <div class="main1_slider">
+            <div class="main_slider">
                 <img src="img_1/main_slider1.webp" alt="main slider">
             </div>
 
@@ -797,7 +1206,25 @@
                 </div>
             </article>
 
-            <article class="product_two">
+            <article>
+                <h3 id="second_title"></h3>
+                <div class="second_product">
+                    <div class="sproduct_box">
+                        <div class="sproduct_img"></div>
+                    </div>
+                    <div class="sproduct_box">
+                        <div class="sproduct_img"></div>
+                    </div>
+                    <div class="sproduct_box">
+                        <div class="sproduct_img"></div>
+                    </div>
+                    <div class="sproduct_box">
+                        <div class="sproduct_img"></div>
+                    </div>
+                </div>
+            </article>
+
+            <article>
                 <h3 id="title"></h3>
                 <div class="product">
                     <div class="img_wrap"></div>
@@ -959,8 +1386,8 @@
         timerWrap.style.flexFlow = "row wrap";
         timerWrap.style.justifyContent = "space-between";
         timerWrap.style.alignItems = "center";
-        
-        //title
+
+        //First title
         let firstTitle = document.getElementById("first_title");
         firstTitle.innerHTML = "이 상품 어때요?";
         firstTitle.style.color = "#333333";
@@ -969,8 +1396,8 @@
         firstTitle.style.letterSpacing = "-0.5px"
         firstTitle.style.fontWeight = "600";
         firstTitle.style.textAlign = "center";
-        firstTitle.style.margin = "100px 0 30px 0";
         firstTitle.style.width = "100%";
+        firstTitle.style.margin = "50px 0 30px 0";
         //product1 - article
         let articleOne = document.getElementsByTagName("article")[0];
         articleOne.style.width = "1200px";
@@ -984,26 +1411,68 @@
         let productsFirst = document.getElementsByClassName("first_product");
 
         for (let i = 0; i < productsFirst.length; i++) {
-          productsFirst[i].style.boxSizing = "border-box";
-          productsFirst[i].style.width = "270px";
-          productsFirst[i].style.height = "460px";
-          productsFirst[i].style.boxSizing = "border-box";
-          productsFirst[i].style.margin = "15px 10px";
-          productsFirst[i].style.display = "inline-block";
-          productsFirst[i].style.textAlign = "left";
-          productsFirst[i].style.backgroundColor = "#fff";
+            productsFirst[i].style.boxSizing = "border-box";
+            productsFirst[i].style.width = "270px";
+            productsFirst[i].style.height = "460px";
+            productsFirst[i].style.boxSizing = "border-box";
+            productsFirst[i].style.margin = "15px 10px";
+            productsFirst[i].style.display = "inline-block";
+            productsFirst[i].style.textAlign = "left";
+            productsFirst[i].style.backgroundColor = "#fff";
         }
         //first product - img
         let imgWrapFirst = document.getElementsByClassName("img_wrap_first");
 
         for (let i = 0; i < productsFirst.length; i++) {
-          imgWrapFirst[i].style.width = "100%";
-          imgWrapFirst[i].style.height = "340px"
-          imgWrapFirst[i].style.overflow = "hidden";
-          imgWrapFirst[i].style.position = "relative";
+            imgWrapFirst[i].style.width = "100%";
+            imgWrapFirst[i].style.height = "340px"
+            imgWrapFirst[i].style.overflow = "hidden";
+            imgWrapFirst[i].style.position = "relative";
         }
-        
-        //product second - title
+        //Second title
+        let secondTitle = document.getElementById("second_title");
+        secondTitle.innerHTML = "수고했어 오늘도 >";
+        secondTitle.style.color = "#333333";
+        secondTitle.style.fontSize = "28px";
+        secondTitle.style.lineHeight = "1.15";
+        secondTitle.style.letterSpacing = "-0.5px"
+        secondTitle.style.fontWeight = "600";
+        secondTitle.style.textAlign = "center";
+        secondTitle.style.margin = "100px 0 30px 0";
+        secondTitle.style.width = "100%";
+        //second - article
+        let articleTwo = document.getElementsByTagName("article")[1];
+        articleTwo.style.width = "1200px";
+        articleTwo.style.height = "auto";
+        articleTwo.style.textAlign = "center";
+        articleTwo.style.margin = "0 auto";
+        articleTwo.style.display = "flex";
+        articleTwo.style.flexFlow = "row wrap";
+        articleTwo.style.justifyContent = "center";
+        //second product
+        let productsSecond = document.getElementsByClassName("sproduct_box");
+
+        for (let i = 0; i < productsSecond.length; i++) {
+            productsSecond[i].style.boxSizing = "border-box";
+            productsSecond[i].style.width = "270px";
+            productsSecond[i].style.height = "460px";
+            productsSecond[i].style.boxSizing = "border-box";
+            productsSecond[i].style.margin = "15px 10px";
+            productsSecond[i].style.display = "inline-block";
+            productsSecond[i].style.textAlign = "left";
+            productsSecond[i].style.backgroundColor = "#fff";
+        }
+        //second product - img
+        let imgWrapSecond = document.getElementsByClassName("sproduct_img");
+
+        for (let i = 0; i < productsSecond.length; i++) {
+            imgWrapSecond[i].style.width = "100%";
+            imgWrapSecond[i].style.height = "340px"
+            imgWrapSecond[i].style.overflow = "hidden";
+            imgWrapSecond[i].style.position = "relative";
+        }
+
+        //product third - title
         let title = document.getElementById("title");
         title.innerHTML = "놓치면 후회할 가격 > ";
         title.style.color = "#333333";
@@ -1014,38 +1483,7 @@
         title.style.textAlign = "center";
         title.style.margin = "100px 0 30px 0";
         title.style.width = "100%";
-        //product second - article
-        let articleTwo = document.getElementsByTagName("article")[1];
-        articleTwo.style.width = "1200px";
-        articleTwo.style.height = "auto";
-        articleTwo.style.textAlign = "center";
-        articleTwo.style.margin = "0 auto";
-        articleTwo.style.display = "flex";
-        articleTwo.style.flexFlow = "row wrap";
-        articleTwo.style.justifyContent = "center";
-        //second product
-        let products = document.getElementsByClassName("product");
-
-        for (let i = 0; i < products.length; i++) {
-          products[i].style.boxSizing = "border-box";
-          products[i].style.width = "270px";
-          products[i].style.height = "460px";
-          products[i].style.margin = "15px 10px";
-          products[i].style.display = "inline-block";
-          products[i].style.textAlign = "left";
-          products[i].style.backgroundColor = "#fff";
-        }
-        //second product - img
-        let imgWrap = document.getElementsByClassName("img_wrap");
-
-        for (let i = 0; i < products.length; i++) {
-          imgWrap[i].style.width = "100%";
-          imgWrap[i].style.height = "340px"
-          imgWrap[i].style.overflow = "hidden";
-          imgWrap[i].style.position = "relative";
-        }
-        
-        //recipe
+        //product third - article
         let articleThree = document.getElementsByTagName("article")[2];
         articleThree.style.width = "1200px";
         articleThree.style.height = "auto";
@@ -1054,7 +1492,38 @@
         articleThree.style.display = "flex";
         articleThree.style.flexFlow = "row wrap";
         articleThree.style.justifyContent = "center";
-        articleThree.style.paddingBottom = "150px";
+        //third product
+        let products = document.getElementsByClassName("product");
+
+        for (let i = 0; i < products.length; i++) {
+            products[i].style.boxSizing = "border-box";
+            products[i].style.width = "270px";
+            products[i].style.height = "460px";
+            products[i].style.margin = "15px 10px";
+            products[i].style.display = "inline-block";
+            products[i].style.textAlign = "left";
+            products[i].style.backgroundColor = "#fff";
+        }
+        //third product - img
+        let imgWrap = document.getElementsByClassName("img_wrap");
+
+        for (let i = 0; i < products.length; i++) {
+            imgWrap[i].style.width = "100%";
+            imgWrap[i].style.height = "340px"
+            imgWrap[i].style.overflow = "hidden";
+            imgWrap[i].style.position = "relative";
+        }
+
+        //recipe
+        let articleFour = document.getElementsByTagName("article")[3];
+        articleFour.style.width = "1200px";
+        articleFour.style.height = "auto";
+        articleFour.style.textAlign = "center";
+        articleFour.style.margin = "0 auto";
+        articleFour.style.display = "flex";
+        articleFour.style.flexFlow = "row wrap";
+        articleFour.style.justifyContent = "center";
+        articleFour.style.paddingBottom = "150px";
 
         let recipeTitle = document.getElementById("recipe_title");
         recipeTitle.innerHTML = "The Epiccure";
@@ -1068,69 +1537,72 @@
         recipeTitle.style.width = "100%";
 
         let recipeBox = document.getElementsByClassName("recipe_box");
-        
-          for(let i=0; i<recipeBox.length; i++){
-          recipeBox[i].style.boxSizing = "border-box";
-          recipeBox[i].style.width = "350px";
-          recipeBox[i].style.height = "370px";
-          recipeBox[i].style.display = "inline-block";
-          recipeBox[i].style.textAlign = "left";
-          recipeBox[i].style.margin = "0 15px";
-          }
+
+        for (let i = 0; i < recipeBox.length; i++) {
+            recipeBox[i].style.boxSizing = "border-box";
+            recipeBox[i].style.width = "350px";
+            recipeBox[i].style.height = "370px";
+            recipeBox[i].style.display = "inline-block";
+            recipeBox[i].style.textAlign = "left";
+            recipeBox[i].style.margin = "0 15px";
+        }
 
         let recipeImg = document.getElementsByClassName("recipe_img");
-        
-          for(let i=0; i<recipeBox.length; i++){
+
+        for (let i = 0; i < recipeBox.length; i++) {
             recipeImg[i].style.width = "100%";
             recipeImg[i].style.height = "260px";
             recipeImg[i].style.backgroundColor = "#000";
-          }
+        }
 
-      
+        //timedeal timer
+        let countDownDate = new Date("Jan 1, 2025 20:19:18").getTime();
 
-        //slider img
-        let slider_show = document.getElementsByName("slider_img");
-            let slider_array = ["img_1/slider_1.webp",
-                "img_1/slider_2.webp",
-                "img_1/slider_3.webp",
-                "img_1/slider_4.webp",
-                "img_1/slider_5.webp",
-                "img_1/slider_6.webp",
-                "img_1/slider_7.webp",
-                "img_1/slider_8.webp"
-            ];
+        let x = setInterval(function () {
+            let now = new Date().getTime();
 
-            let index = 0;
+            let distance = countDownDate - now;
 
-            function slide() {
-                document["slider_img"].src = slider_array[index];
-                index++;
-                if (index >= slider_array.length) {
-                    index = 0;
-                }
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = "남은시간 " + hours + " : " + minutes + " : " + seconds;
+
+            if (distance < 0) {
+                clearInterVal(x);
+                document.getElementById("timer").innerHTML = "타임딜 종료";
             }
+        }, 1000);
 
-            setInterval("slide()", 4000); //slide함수가 4초마다 반복
-        
-            //timedeal timer
-            let countDownDate = new Date("Jan 1, 2025 20:19:18").getTime();
+        function prev(){
+        $(".auto_slide li:last").prependTo(".auto_slide");
+        $(".auto_slide").css({marginLeft:-1920});
+        $(".auto_slide").stop().animate({marginLeft:0},800);
+      }
 
-            let x = setInterval(function(){
-                let now = new Date().getTime();
+      function next(){
+        $(".auto_slide").stop().animate({marginLeft:-1920},function(){
+          $(".auto_slide li:first").appendTo(".auto_slide");
+          $(".auto_slide").css({marginLeft:0});
+        });
+      }
 
-                let distance = countDownDate - now;
+      function slide(){
+        $(".auto_slide").stop().animate({marginLeft:-1920},function(){
+          $(".auto_slide li:first").appendTo(".auto_slide");
+          $(".auto_slide").css({marginLeft:0});
+        });
+      }
 
-                let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setInterval(slide,4000);
 
-                document.getElementById("timer").innerHTML = "남은시간 " + hours + " : " + minutes + " : " + seconds;
-
-                if(distance < 0){
-                    clearInterVal(x);
-                    document.getElementById("timer").innerHTML = "타임딜 종료";
-                }
-            },1000);
+      $(".prev").click(function(){
+        prev();
+      });
+      $(".next").click(function(){
+        next();
+      });
 
 
 
